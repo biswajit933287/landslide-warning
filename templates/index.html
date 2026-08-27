@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Landsafe NER
+    </title>
+
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <!-- Custom CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+
+        ⛰️ Landsafe warning
+
+    </div>
+
+    <div class="nav-right">
+
+        <select id="language">
+
+            <option value="en">
+                English
+            </option>
+
+            <option value="hi">
+                हिन्दी
+            </option>
+
+            <option value="bn">
+                বাংলা
+            </option>
+
+            <option value="as">
+                অসমীয়া
+            </option>
+
+            <option value="ne">
+                नेपाली
+            </option>
+
+        </select>
+
+        <button
+            id="locationBtn"
+            class="location-btn"
+        >
+        📍 Use My Location
+        </button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+<section class="hero">
+
+    <!--<div id="infoPopup" class="info-popup">
+    <div class="info-popup-content">
+        <p id="infoPopupText"></p>
+        <button onclick="closeInfoPopup()">OK</button>
+    </div>-->
+
+
+    <!-- <svg class="hills" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path class="hill hill1" d="M0,192 C320,300 420,80 720,160 C1020,240 1120,80 1440,180 L1440,320 L0,320 Z"></path>
+        <path class="hill hill2" d="M0,224 C300,120 500,260 720,200 C940,140 1140,260 1440,220 L1440,320 L0,320 Z"></path>
+    </svg>-->
+
+    <div>
+
+        <p class="badge">
+            AI-POWERED EARLY WARNING
+        </p>
+
+        <h1>
+            Landslide Risk Monitoring
+            for Northeast India
+        </h1>
+
+        <p class="hero-text">
+
+            Combine rainfall, terrain,
+            historical landslides and
+            susceptibility data into an
+            explainable risk assessment.
+
+        </p>
+
+        <button
+            id="startBtn"
+            class="primary-btn"
+        >
+            Start Live Analysis
+        </button>
+
+    </div>
+
+</section>
+
+
+<section class="dashboard">
+
+    <!-- Workflow -->
+
+    <div class="workflow">
+
+        <div
+            class="workflow-card active"
+            data-step="rainfall"
+        >
+            <span>🌧️</span>
+            <strong>Rainfall</strong>
+            <small>Live forecast</small>
+        </div>
+
+
+        <div
+            class="workflow-card"
+            data-step="terrain"
+        >
+            <span>⛰️</span>
+            <strong>Terrain</strong>
+            <small>Elevation & slope</small>
+        </div>
+
+
+        <div
+            class="workflow-card"
+            data-step="historical"
+        >
+            <span>📚</span>
+            <strong>Historical</strong>
+            <small>Landslide records</small>
+        </div>
+
+
+        <div
+            class="workflow-card"
+            data-step="susceptibility"
+        >
+            <span>🗺️</span>
+            <strong>Susceptibility</strong>
+            <small>Risk layer</small>
+        </div>
+
+
+        <div
+            class="workflow-card"
+            data-step="ai"
+        >
+            <span>🤖</span>
+            <strong>AI Engine</strong>
+            <small>Random Forest</small>
+        </div>
+
+
+        <div
+            class="workflow-card"
+            data-step="risk"
+        >
+            <span>📊</span>
+            <strong>Risk Score</strong>
+            <small>0–100</small>
+        </div>
+
+
+        <div
+            class="workflow-card"
+            data-step="alert"
+        >
+            <span>🚨</span>
+            <strong>Early Warning</strong>
+            <small>Action</small>
+        </div>
+
+    </div>
+
+
+    <!-- Main grid -->
+
+    <div class="grid">
+
+        <!-- Map -->
+
+        <div class="panel map-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        GIS Risk Map
+                    </h2>
+
+                    <p id="locationText">
+                        Waiting for location...
+                    </p>
+
+                </div>
+
+                <span
+                    id="riskBadge"
+                    class="risk-badge"
+                >
+                    WAITING
+                </span>
+
+            </div>
+
+
+            <div id="map"></div>
+
+        </div>
+
+
+        <!-- Risk -->
+
+        <div class="panel risk-panel">
+
+            <h2>
+                Risk Analysis
+            </h2>
+
+
+            <div class="risk-circle">
+
+                <span id="riskScore">
+                    --
+                </span>
+
+                <small>
+                    /100
+                </small>
+
+            </div>
+
+
+            <h3
+                id="riskLevel"
+                class="risk-level"
+            >
+                Waiting
+            </h3>
+
+
+            <div class="factor">
+
+                <div>
+
+                    <span>
+                        Rainfall
+                    </span>
+
+                    <strong id="rainFactor">
+                        --
+                    </strong>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        id="rainProgress"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="factor">
+
+                <div>
+
+                    <span>
+                        Terrain
+                    </span>
+
+                    <strong id="terrainFactor">
+                        --
+                    </strong>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        id="terrainProgress"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="factor">
+
+                <div>
+
+                    <span>
+                        Historical
+                    </span>
+
+                    <strong id="historyFactor">
+                        --
+                    </strong>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        id="historyProgress"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="factor">
+
+                <div>
+
+                    <span>
+                        Susceptibility
+                    </span>
+
+                    <strong id="susceptibilityFactor">
+                        --
+                    </strong>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        id="susceptibilityProgress"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Weather -->
+
+    <div class="grid">
+
+        <div class="panel">
+
+            <h2>
+                🌧️ 24-Hour Rainfall Analysis
+            </h2>
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <span>
+                        Expected Rainfall
+                    </span>
+
+                    <strong id="rainfall">
+                        --
+                    </strong>
+
+                    <small>
+                        mm
+                    </small>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span>
+                        Rain Duration
+                    </span>
+
+                    <strong id="rainDuration">
+                        --
+                    </strong>
+
+                    <small>
+                        hours
+                    </small>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span>
+                        Max Probability
+                    </span>
+
+                    <strong id="rainProbability">
+                        --
+                    </strong>
+
+                    <small>
+                        %
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Alert -->
+
+        <div
+            class="panel alert-panel"
+            id="alertPanel"
+        >
+
+            <h2>
+                🚨 Early Warning
+            </h2>
+
+            <p id="alertText">
+
+                Location analysis has not
+                started.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Explanation -->
+
+    <div class="panel">
+
+        <h2>
+            🧠 Why did the risk change?
+        </h2>
+
+        <div
+            id="explanation"
+            class="explanation"
+        >
+
+            Start the analysis to see
+            contributing factors.
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        Landsafe warning
+    </p>
+
+    <p>
+        Risk estimates are decision-support
+        outputs, not guaranteed predictions.
+    </p>
+
+</footer>
+
+
+<!-- Leaflet JS -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+></script>
+
+
+<!-- Application JS -->
+
+<script
+    src="{{ url_for('static', filename='js/app.js') }}"
+></script>
+
+</body>
+
+</html>
