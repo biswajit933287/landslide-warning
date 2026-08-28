@@ -124,38 +124,6 @@
 
 </section>
 
-<section class="emergency-section">
-  <h2>🚨 Emergency Helpline Numbers</h2>
-
-  <div class="emergency-category">
-    <h3>Main Emergency Numbers</h3>
-    <ul>
-      <li><strong>112</strong> — Emergency Response Support System (One Number for All)</li>
-      <li><strong>1078</strong> — National Disaster Control Room (NDMA)</li>
-      <li><strong>1070</strong> — State Disaster Control Room</li>
-      <li><strong>1077</strong> — District Disaster Control Room</li>
-    </ul>
-  </div>
-
-  <div class="emergency-category">
-    <h3>🚑 Medical and Rescue Team</h3>
-    <ul>
-      <li><strong>102</strong> — Government Ambulance Service</li>
-      <li><strong>108</strong> — Emergency Medical Disaster Response</li>
-      <li><strong>101</strong> — Fire Brigade</li>
-    </ul>
-  </div>
-
-  <div class="emergency-category">
-    <h3>⛰️ For Hilly and Specific Areas</h3>
-    <ul>
-      <li><strong>139</strong> — Railway Safety and Disaster Relief (near railway track incidents)</li>
-      <li><strong>Local Police Station</strong> — For immediate help at the local level</li>
-    </ul>
-  </div>
-</section>
-
-<section class="dashboard">
 
     <!-- Workflow -->
 
@@ -518,6 +486,42 @@
 
 </main>
 
+<section class="emergency-section">
+  <button class="emergency-toggle" onclick="toggleEmergency()">
+    🚨 Emergency Helpline Numbers
+  </button>
+
+  <div class="emergency-content" id="emergencyContent" style="display:none;">
+
+    <div class="emergency-category">
+      <h3>Main Emergency Numbers</h3>
+      <ul>
+        <li><a href="tel:112"><strong>112</strong> — Emergency Response Support System (One Number for All)</a></li>
+        <li><a href="tel:1078"><strong>1078</strong> — National Disaster Control Room (NDMA)</a></li>
+        <li><a href="tel:1070"><strong>1070</strong> — State Disaster Control Room</a></li>
+        <li><a href="tel:1077"><strong>1077</strong> — District Disaster Control Room</a></li>
+      </ul>
+    </div>
+
+    <div class="emergency-category">
+      <h3>🚑 Medical and Rescue Team</h3>
+      <ul>
+        <li><a href="tel:102"><strong>102</strong> — Government Ambulance Service</a></li>
+        <li><a href="tel:108"><strong>108</strong> — Emergency Medical Disaster Response</a></li>
+        <li><a href="tel:101"><strong>101</strong> — Fire Brigade</a></li>
+      </ul>
+    </div>
+
+    <div class="emergency-category">
+      <h3>⛰️ For Hilly and Specific Areas</h3>
+      <ul>
+        <li><a href="tel:139"><strong>139</strong> — Railway Safety and Disaster Relief (near railway track incidents)</a></li>
+        <li><strong>Local Police Station</strong> — For immediate help at the local level</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
 
 <footer>
 
@@ -545,6 +549,13 @@
 <script
     src="{{ url_for('static', filename='js/app.js') }}"
 ></script>
+
+<script>
+function toggleEmergency() {
+  const content = document.getElementById("emergencyContent");
+  content.style.display = (content.style.display === "none") ? "block" : "none";
+}
+</script>
 
 </body>
 
