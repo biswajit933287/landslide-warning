@@ -554,6 +554,55 @@ document.getElementById(
     }
 );
 
+// ------------------------------------
+// Search
+// ------------------------------------
+
+document.getElementById("searchBtn").addEventListener("click", doSearch);
+
+document.getElementById("searchBox").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") doSearch();
+});
+
+
+function quickSearch(placeName) {
+    document.getElementById("searchBox").value = placeName;
+    doSearch();
+}
+
+
+async function doSearch() {
+
+    const q = document.getElementById("searchBox").value.trim();
+
+    if (!q) return;
+
+    try {
+
+        const res = await fetch(
+            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q)}&limit=1`
+        );
+
+        const data = await res.json();
+
+        if (data.length === 0) {
+            alert("Place not found.");
+            return;
+        }
+
+        const latitude = parseFloat(data[0].lat);
+        const longitude = parseFloat(data[0].lon);
+
+        currentLocation = { latitude, longitude };
+
+        showLocation(latitude, longitude, 500); // 500 = approx accuracy in meters for a searched place
+
+        runAnalysis(latitude, longitude);
+
+    } catch (e) {
+        alert("search failed - try again.");
+    }
+}
 
 // ------------------------------------
 // Workflow clickable cards

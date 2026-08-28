@@ -65,12 +65,26 @@
 
         </select>
 
-        <button
-            id="locationBtn"
-            class="location-btn"
-        >
+        <input id="searchBox" type="text" placeholder="Search a place (e.g. Gangtok, Sikkim)" class="search-box"/>
+      <button id="searchBtn" class="search-btn">Search</button>
+
+      <button
+        id="locationBtn"
+        class="location-btn"
+      >
         📍 Use My Location
-        </button>
+      </button>
+        <div class="quick-states">
+            <button class="chip" onclick="quickSearch('Sikkim')">Sikkim</button>
+            <button class="chip" onclick="quickSearch('Gangtok')">Gangtok</button>
+            <button class="chip" onclick="quickSearch('Arunachal Pradesh')">Arunachal Pradesh</button>
+            <button class="chip" onclick="quickSearch('Assam')">Assam</button>
+            <button class="chip" onclick="quickSearch('Tripura')">Tripura</button>
+            <button class="chip" onclick="quickSearch('Meghalaya')">Meghalaya</button>
+            <button class="chip" onclick="quickSearch('Manipur')">Manipur</button>
+            <button class="chip" onclick="quickSearch('Nagaland')">Nagaland</button>
+            <button class="chip" onclick="quickSearch('Mizoram')">Mizoram</button>
+        </div>
 
     </div>
 
