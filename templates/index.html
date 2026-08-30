@@ -143,76 +143,83 @@
 
     <div class="workflow">
 
-        <div
-            class="workflow-card active"
-            data-step="rainfall"
-        >
-            <span>🌧️</span>
+     <div class="workflow-card active" data-step="rainfall">
+            <div class="card-top">
             <strong>Rainfall</strong>
-            <small>Live forecast</small>
+            <span>🌧️</span>
+         </div>
+          <div class="card-slider"></div>
+            <div class="card-value" id="cardrainfall">-- <small>mm</small></div>
+            <div class="card-label">Live forecast</div>
         </div>
 
-
-        <div
-            class="workflow-card"
-            data-step="terrain"
-        >
-            <span>⛰️</span>
-            <strong>Terrain</strong>
-            <small>Elevation & slope</small>
+        <div class="workflow-card" data-step="terrain">
+            <div class="card-top">
+                <strong>Terrain</strong>
+                <span>⛰️</span>
+            </div>
+            <div class="arc-gauge" id="gaugeTerrain">
+                <div class="arc-value" id="cardterrain">--</div>
+            </div>
+            <div class="card-label">Steep slope</div>
         </div>
 
-
-        <div
-            class="workflow-card"
-            data-step="historical"
-        >
-            <span>📚</span>
-            <strong>Historical</strong>
-            <small>Landslide records</small>
+        <div class="workflow-card" data-step="historical">
+            <div class="card-top">
+                <strong>Historical</strong>
+                <span>📚</span>
+            </div>
+            <div class="card-slider"></div>
+            <div class="card-value" id="cardhistorical">--</div>
+            <div class="card-label">Landslide records</div>
         </div>
 
+        <div class="workflow-card" data-step="susceptibility">
+            <div class="card-top">
+                <strong>Susceptibility</strong>
+                <span>🗺️</span>
+             </div>
+            <div class="card-slider"></div>
+            <div class="card-value" id="cardsusceptibility">-- <small>%</small></div>
+            <div class="card-label">Risk layer</div>
 
-        <div
-            class="workflow-card"
-            data-step="susceptibility"
-        >
-            <span>🗺️</span>
-            <strong>Susceptibility</strong>
-            <small>Risk layer</small>
         </div>
 
-
-        <div
-            class="workflow-card"
-            data-step="ai"
-        >
-            <span>🤖</span>
-            <strong>AI Engine</strong>
-            <small>Random Forest</small>
+        <div class="workflow-card" data-step="ai">
+            <div class="card-top">
+                <strong>AI Engine</strong>
+                <span>🤖</span>
+            </div>
+            <div class="card-slider"></div>
+            <div class="card-value" id="cardai">-- <small>%</small></div>
+            <div class="card-label">Confidence</div>
         </div>
 
-
-        <div
-            class="workflow-card"
-            data-step="risk"
-        >
-            <span>📊</span>
-            <strong>Risk Score</strong>
-            <small>0–100</small>
+        <div class="workflow-card" data-step="risk">
+            <div class="card-top">
+                <strong>Risk Score</strong>
+                <span>📊</span>
+            </div>
+            <div class="arc-gauge" id="gaugeRisk">
+            <div class="arc-value" id="cardriskscore">--</div>
+            </div>
+            <div class="card-label">High risk</div>
         </div>
 
-
-        <div
-            class="workflow-card"
-            data-step="alert"
-        >
-            <span>🚨</span>
-            <strong>Early Warning</strong>
-            <small>Action</small>
+        <div class="workflow-card" data-step="alert">
+            <div class="card-top">
+                <strong>Early Warning</strong>
+                <span>🚨</span>
+            </div>
+            <div class="arc-gauge" id="gaugeAlert">
+            <div class="arc-value" id="cardalert">--</div>
+            </div>
+            <div class="card-label">Action</div>
         </div>
 
     </div>
+
+
 
 
     <!-- Main grid -->

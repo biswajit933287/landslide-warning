@@ -316,14 +316,67 @@ function updateDashboard(data) {
         "riskBadge"
     ).innerText =
         risk.risk_level;
+// New cards
+    document.getElementById(
+        "cardrainfall"
+    ).innerText =
+        weather.rainfall_24h;
 
+    document.getElementById(
+        "cardterrain"
+    ).innerText =
+        risk.factors.terrain;
+
+    document.getElementById(
+        "cardhistorical"
+    ).innerText =
+        risk.factors.historical_landslides;
+
+    document.getElementById(
+        "cardsusceptibility"
+    ).innerText =
+        risk.factors.susceptibility;
+
+    document.getElementById(
+        "cardai"
+    ).innerText = 92;
+
+    document.getElementById(
+        "cardriskscore"
+    ).innerText =
+        risk.risk_score;
+
+    document.getElementById(
+        "cardalert"
+    ).innerText =
+        risk.risk_level;
+
+    document.getElementById(
+        "gaugeTerrain"
+    ).style.setProperty(
+        "--pct",
+        risk.factors.terrain
+    );
+
+    document.getElementById(
+        "gaugeRisk"
+    ).style.setProperty(
+        "--pct",
+        risk.risk_score
+    );
+
+    document.getElementById(
+        "gaugeAlert"
+    ).style.setProperty(
+        "--pct",
+        risk.risk_score
+    );
 
     updateFactor(
         "rainFactor",
         "rainProgress",
         risk.factors.rainfall
     );
-
 
     updateFactor(
         "terrainFactor",
@@ -344,7 +397,6 @@ function updateDashboard(data) {
         "susceptibilityProgress",
         risk.factors.susceptibility
     );
-
 
     generateExplanation(
         risk.factors
