@@ -101,7 +101,8 @@ const historyData = [
         injured: 397,
         duration_days: 1,
         details: "2:17-4:30 AM single-event landslide, Kerala's deadliest disaster in two decades. Chooralmala received 578mm rainfall in 48 hours before the slide. ~47 people remained missing, ~10,000 displaced; rescue ops ran for weeks. Source: GSI/Wikipedia."
-    }
+    },
+
 ];
 
 
@@ -243,6 +244,52 @@ function tokenMatchesEntry(token, entry) {
 
 
 // ------------------------------------
+// FIX: In dono functions ki kami thi -
+// isliye "1990" jaisa saal-only query
+// bhejne par chatbot crash ho raha tha
+// aur koi reply nahi aa raha tha.
+// ------------------------------------
+
+// Check karta hai ki query sirf ek 4-digit
+// saal hai (jaise "1990", ya spaces ke saath)
+
+function isYearOnlyQuery(query) {
+    const cleanQuery = query.trim();
+    return /^\d{4}$/.test(cleanQuery);
+}
+
+// Diye gaye saal se historyData mein exact
+// match dhundta hai aur formatted response deta hai
+
+function searchByYear(yearStr) {
+
+    const year = parseInt(yearStr, 10);
+
+    const matches = historyData.filter(function(entry) {
+        return entry.year === year;
+    });
+
+    if (matches.length === 0) {
+        return `Saal ${year} ke liye koi data available nahi hai.`;
+    }
+
+    let response = "";
+
+    matches.forEach(function(entry) {
+        response +=
+            `📍 ${entry.location}, ${entry.state} (${entry.year})\n` +
+            `Date: ${entry.date || entry.year}\n` +
+            `Type: ${entry.type}\n` +
+            `Deaths: ${entry.deaths} | Injured: ${entry.injured}\n` +
+            `Duration: ${entry.duration_days ? entry.duration_days + " din" : "N/A"}\n` +
+            `${entry.details}\n\n`;
+    });
+
+    return response;
+}
+
+
+// ------------------------------------
 // Search function (token-based fuzzy match,
 // ranked by number of matching tokens)
 // ------------------------------------
@@ -260,11 +307,9 @@ function searchHistory(query) {
     if(cleanQuery.includes("abhijit")) {
         return "👨🏻‍💻 Developer: Abhijit Biswas\nRole: Landslide Risk Monitoring System - Frontend Developer";
     }
-
     if (greetings.indexOf(cleanQuery) !== -1) {
         return "Namaste! Mujhse India ke landslide/rainfall/storm/flood history ke baare mein poochho - jaise koi saal (e.g. 2018) ya state (e.g. Kerala) ka naam.";
     }
-
     if (isYearOnlyQuery(query)) {
         return searchByYear(query.trim());
     }

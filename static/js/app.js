@@ -434,7 +434,7 @@ function updateFactor(
 
 
 // ------------------------------------
-// Explainable AI
+// Explainable biwajit
 // ------------------------------------
 
 function generateExplanation(
