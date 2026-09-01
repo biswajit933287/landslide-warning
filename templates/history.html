@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Historical Data Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="chat-page">
+        <div class="chat-header">
+            <h2>India Landslide & Rainfall History </h2>
+            <a href="/" class="back-btn">← Back</a>
+        </div>
+        <div id="chatMessages" class="chat-messages">
+             <div id="emptyState" class="empty-state">
+                <div class="empty-state-icon">🏔️</div>
+                <p class="empty-state-title">India Disaster History Assistant</p>
+                <p class="empty-state-text">Kisi saal, state ya jagah ke baare mein poochho</p>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="e.g. 2016 mein sabse zyada landslide kahan hua?">
+            <button id="chatSendBtn">Send</button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/history.js') }}"></script>
+</body>
+</html>

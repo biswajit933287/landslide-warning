@@ -93,7 +93,7 @@ def analyze():
             "risk": risk
         })
 
-    except Exception as e:
+    except Exception as e: # pylint: disable=broad-exception-caught
 
         return jsonify({
             "success": False,
@@ -142,6 +142,9 @@ def history():
 
     return jsonify(results)
 
+@app.route("/history")
+def history_page():
+    return render_template("history.html")
 
 if __name__ == "__main__":
 
@@ -152,4 +155,3 @@ if __name__ == "__main__":
         host="0.0.0.0",
         port=5000
     )
-    

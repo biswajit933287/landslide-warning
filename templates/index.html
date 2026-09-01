@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
 
     <meta
@@ -29,7 +29,10 @@
 </head>
 
 
-<body>
+<button id="historyChatBtn" class="history-chat-btn">
+    <span class="btn-icon">🕐</span>
+    <span class="btn-tooltip">Disaster History</span>
+</button>
 
 <header class="navbar">
 
@@ -74,19 +77,31 @@
       >
         📍 Use My Location
       </button>
-        <div class="quick-states">
-            <button class="chip" onclick="quickSearch('Sikkim')">Sikkim</button>
-            <button class="chip" onclick="quickSearch('Gangtok')">Gangtok</button>
-            <button class="chip" onclick="quickSearch('Arunachal Pradesh')">Arunachal Pradesh</button>
-            <button class="chip" onclick="quickSearch('Assam')">Assam</button>
-            <button class="chip" onclick="quickSearch('Tripura')">Tripura</button>
-            <button class="chip" onclick="quickSearch('Meghalaya')">Meghalaya</button>
-            <button class="chip" onclick="quickSearch('Manipur')">Manipur</button>
-            <button class="chip" onclick="quickSearch('Nagaland')">Nagaland</button>
-            <button class="chip" onclick="quickSearch('Mizoram')">Mizoram</button>
+        <div class="state-dropdown">
+            <button id="stateDropdownBtn" class="state-dropdown-btn">
+            📍 Select State ▾
+            </button>
+            <div id="stateMenu" class="state-menu">
+                 <div class="state-menu-header">
+                     <span>Choose a location</span>
+                    <button id="closeStateMenu" class="state-menu-close">✕</button>
+                </div>
+                <div class="state-menu-list">
+                    <button class="state-item" data-state="Sikkim">Sikkim</button>
+                    <button class="state-item" data-state="Gangtok">Gangtok</button>
+                    <button class="state-item" data-state="Arunachal Pradesh">Arunachal Pradesh</button>
+                    <button class="state-item" data-state="Assam">Assam</button>
+                    <button class="state-item" data-state="Tripura">Tripura</button>
+                    <button class="state-item" data-state="Meghalaya">Meghalaya</button>
+                    <button class="state-item" data-state="Manipur">Manipur</button>
+                    <button class="state-item" data-state="Nagaland">Nagaland</button>
+                    <button class="state-item" data-state="Mizoram">Mizoram</button>
+                </div>
+            </div>
         </div>
-
     </div>
+
+
 
 </header>
 

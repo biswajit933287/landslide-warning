@@ -769,3 +769,33 @@ document.getElementById(
             ].title;
     }
 );
+const stateDropdownBtn = document.getElementById("stateDropdownBtn");
+const stateMenu = document.getElementById("stateMenu");
+const closeStateMenu = document.getElementById("closeStateMenu");
+
+stateDropdownBtn.addEventListener("click", function() {
+    stateMenu.classList.toggle("open");
+});
+
+closeStateMenu.addEventListener("click", function() {
+    stateMenu.classList.remove("open");
+});
+
+document.querySelectorAll(".state-item").forEach(function(item) {
+    item.addEventListener("click", function() {
+        const stateName = item.dataset.state;
+        document.getElementById("locationText").innerText = stateName;
+        stateMenu.classList.remove("open");
+        // Yahan chaho to us state ka lat/long set karke runAnalysis() call kar sakte ho
+    });
+});
+
+const historyBtn = document.getElementById("historyChatBtn");
+
+if (historyBtn) {
+    historyBtn.addEventListener("click", function() {
+        window.location.href = "/history";
+    });
+} else {
+    console.log("historyChatBtn NOT FOUND when script ran!");
+}
