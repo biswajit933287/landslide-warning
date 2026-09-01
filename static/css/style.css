@@ -1326,7 +1326,7 @@ body {
 .panel h2::after {
     content:"";
     position:absolute; left:0; bottom:0;
-    width: 265px; height:3px;
+    width: 255px; height:3px;
     border-radius: 4px;
     background: linear-gradient(90deg, #14b8a6, #5eead4);
 }
