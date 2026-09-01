@@ -1,3 +1,7 @@
+html, body{
+    overflow-x: hidden;
+    max-width: 100%;
+}
 * {
     margin: 0;
     padding: 0;
@@ -38,22 +42,17 @@ body {
 
 
 .logo {
-
     font-size: 22px;
-
     font-weight: 800;
-
     color: #102a43;
 }
 
 
 .nav-right {
-
     display: flex;
-
     gap: 12px;
-
     align-items: center;
+    flex-wrap: wrap;
 }
 
 
@@ -229,7 +228,7 @@ button {
 
 .workflow-card:hover,
 .workflow-card.active {
-    border-color: #2f80ed;
+    border-color: #14b8a6;
     transform: translateY(-2px);
 }
 
@@ -252,7 +251,7 @@ button {
 .card-slider {
     height: 4px;
     border-radius: 20px;
-    background: linear-gradient(90deg, #2f80ed, #27ae60, #f2c94c);
+    background: linear-gradient(90deg, #14b8a6, #27ae60, #f2c94c);
     margin-bottom: 8px;
     position: relative;
 }
@@ -461,12 +460,10 @@ button {
 
 
 .progress div {
-
     height: 100%;
-
     width: 0;
-
     transition: width .8s;
+    background: #14b8a6;
 }
 
 
@@ -522,7 +519,7 @@ button {
 
 .alert-panel {
 
-    border-left: 6px solid #2f80ed;
+    border-left: 6px solid #14b8a6;
 }
 
 
@@ -599,19 +596,19 @@ footer {
     }
 
 }
-@media(max-width: 600px) {
+@media(max-width: 1000px) {
     .hero {
 
-        padding: 50px 6%;
+        padding: 20px 6%;
     }
     .dashboard {
 
-        width: 94%;
+        width: 100%; /*94*/
     }
     .workflow {
 
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(3, 1fr);
     }
     .stats {
 
@@ -619,24 +616,39 @@ footer {
     }
     #map {
 
-        height: 400px;
+        height: 250px;
     }
     .logo {
 
         font-size: 17px;
     }
-    .location-btn {
-
-        padding: 8px;
-    }
+    /*.location-btn {
+        padding: 4px;
+        flex-basis: 100%;
+        margin-top: 8px;
+    }*/
     .navbar {
-        flex-direction: row+wrap;
+        flex-direction: column;
         align-items: flex-start;
     }
     .nav-right {
         width: 100%;
-        flex-direction: row+wrap;
+        flex-direction: row;
+        flex-wrap: wrap;
         align-items: flex-start;
+        gap: 8px;
+    }
+    .location-btn,
+    .state-dropdown,
+    .search-box,
+    .search-btn,
+    #language {
+        flex: 1 1 auto;
+        margin-top: 4px;
+    }
+
+    .location-btn {
+        padding: 10px;
     }
 }
 .hero {
@@ -704,9 +716,9 @@ footer {
   }
 }
 .card-value {
-    font-size: 28px;
+    font-size: 15px;
     font-weight: 800;
-    color: #2f80ed;
+    color: #30c0dd;
     margin: 8px 0 4px;
 }
 .state-dropdown {
@@ -718,9 +730,9 @@ footer {
     background: #102a43;
     color: white;
     padding: 10px 16px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 14px;
+    border-radius: 800px;
+    font-weight: 100;
+    font-size: 13px;
 }
 
 .state-menu {
@@ -730,8 +742,8 @@ footer {
     left: 0;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0,0,0,.15);
-    width: 260px;
+    box-shadow: 0 8px 30px rgba(28, 168, 203, 0.15);
+    width: 250px;
     z-index: 2000;
     overflow: hidden;
 }
@@ -780,7 +792,7 @@ footer {
 }
 
 body {
-    background: radial-gradient(circle at top, #1a3a5c, #0a1929 70%);
+    background: radial-gradient(circle at top, #a3e4e9, #8f5f065b 50%);
 }
 
 .chat-page {
@@ -929,7 +941,7 @@ body {
 }
 
 .chat-msg-user {
-    background: linear-gradient(135deg, #2f80ed, #1a5fc4);
+    background: linear-gradient(135deg, #14b8a6, #1a5fc4);
     color: white;
     border-bottom-right-radius: 4px;
 }
@@ -960,7 +972,7 @@ body {
 }
 
 .chat-input-area input:focus {
-    border-color: #2f80ed;
+    border-color: #14b8a6;
     box-shadow: 0 0 0 4px rgba(47,128,237,0.13);
 }
 
@@ -988,15 +1000,15 @@ body {
 
 .history-chat-btn {
     position: fixed;
-    bottom: 28px;
+    bottom: 50px;
     right: 28px;
-    width: 62px;
-    height: 62px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #2f80ed, #102a43);
+    background: linear-gradient(135deg, #14b8a6, #102a43);
     background-size: 200% 200%;
     color: white;
-    font-size: 26px;
+    font-size: 50px;
     border: none;
     cursor: pointer;
     z-index: 3000;
@@ -1100,11 +1112,11 @@ body {
 @media (max-width: 600px) {
 
     .history-chat-btn {
-        width: 52px;
-        height: 52px;
-        font-size: 22px;
-        bottom: 18px;
-        right: 18px;
+        width: 80px;
+        height: 80px;
+        font-size: 32px;
+        bottom: 100px;
+        right: 15px;
     }
 
     /* Tooltip hover pe touch devices mein
@@ -1168,4 +1180,163 @@ body {
     .history-chat-btn:active {
         transform: scale(0.92);
     }
+}
+/* Workflow cards - entrance + hover pop */
+.workflow-card {
+    animation: cardPop .5s ease backwards;
+}
+.workflow-card:nth-child(1){animation-delay:.05s}
+.workflow-card:nth-child(2){animation-delay:.1s}
+.workflow-card:nth-child(3){animation-delay:.15s}
+.workflow-card:nth-child(4){animation-delay:.2s}
+.workflow-card:nth-child(5){animation-delay:.25s}
+.workflow-card:nth-child(6){animation-delay:.3s}
+.workflow-card:nth-child(7){animation-delay:.35s}
+
+@keyframes cardPop {
+    from { opacity:0; transform: translateY(14px) scale(.96); }
+    to   { opacity:1; transform: translateY(0) scale(1); }
+}
+
+.workflow-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 12px 28px rgba(20,184,166,.35);
+}
+
+/* Panels - subtle lift on hover */
+.panel {
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+.panel:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(16,42,67,.12);
+}
+
+/* Risk circle glow */
+.risk-circle {
+    border-color: #14b8a6;
+    box-shadow: 0 0 0 6px rgba(20,184,166,.12);
+    transition: transform .3s ease;
+}
+.risk-circle:hover { transform: scale(1.05); }
+
+/* Primary button pop */
+.primary-btn {
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0,0,0,.25);
+}
+
+/*new line add------------------------------- 01.09.26*/
+
+/* ===== HERO — animated gradient + glow =====*/
+.hero {
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(rgba(10,10,10,0.6), rgba(10,31,61,0.75)), url('/static/images/hills-bg.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero h1 {
+    background: linear-gradient(90deg, #933a3a, #99f6e4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ===== WORKFLOW CARDS — glass + glow border ===== */
+.workflow-card {
+    background: linear-gradient(145deg, #3d4f6b, #2e3d54);
+    position: relative;
+    overflow: hidden;
+}
+.workflow-card::before {
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(120deg, transparent 40%, rgba(20,184,166,.15) 50%, transparent 60%);
+    background-size: 250% 250%;
+    animation: cardShine 5s linear infinite;
+}
+@keyframes cardShine {
+    0% { background-position: 200% 0; }
+    100% { background-position: -50% 0; }
+}
+.workflow-card.active {
+    box-shadow: 0 0 0 2px #14b8a6, 0 10px 25px rgba(20,184,166,.35);
+}
+
+/* ===== RISK CIRCLE — pulsing ring ===== */
+.risk-circle {
+    position: relative;
+}
+.risk-circle::after {
+    content:"";
+    position:absolute; inset:-8px;
+    border-radius:50%;
+    border:2px solid rgba(20,184,166,.4);
+    animation: ringPulse 2.2s ease-out infinite;
+}
+@keyframes ringPulse {
+    0% { transform:scale(.95); opacity:1; }
+    100% { transform:scale(1.25); opacity:0; }
+}
+
+/* ===== BUTTONS — gradient sheen ===== */
+.primary-btn {
+    padding: 14px 22px;
+    background: white;
+    color: #102a43;
+    font-size: 15px;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0,0,0,.25);
+}
+
+.search-btn {
+    background: #06223b;
+    color: white;
+    padding: 10px 16px;
+}
+
+.location-btn {
+    background: #0e90cc;
+    color: rgb(246, 246, 243);
+    padding: 11px 16px;
+}
+
+.state-dropdown-btn {
+    background: #648cc1;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* ===== PANEL HEADINGS — accent underline ===== */
+.panel h2 {
+    position: relative;
+    padding-bottom: 8px;
+}
+.panel h2::after {
+    content:"";
+    position:absolute; left:0; bottom:0;
+    width: 265px; height:3px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #14b8a6, #5eead4);
+}
+
+/* ===== SMOOTH SCROLL + SELECTION COLOR ===== */
+html { scroll-behavior: smooth; }
+::selection { background: #14b8a6; color: white; }
+
+/* ===== NAVBAR — subtle blur on scroll ===== */
+.navbar {
+    backdrop-filter: blur(8px);
+    background: rgba(255,255,255,.92);
 }

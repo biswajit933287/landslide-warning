@@ -31,9 +31,7 @@ function initMap() {
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         {
             maxZoom: 19,
-
-            attribution:
-                '&copy; OpenStreetMap contributors'
+            attribution: '&copy; OpenStreetMap contributors'
         }
     ).addTo(map);
 }
@@ -165,6 +163,12 @@ function showLocation(
         .openPopup();
 
 
+    // Cap the circle radius so it never
+    // covers the whole map when accuracy
+    // value is very large (e.g. IP-based
+    // location can be several km off)
+    const displayRadius = Math.min(accuracy, 40);
+
     accuracyCircle =
         L.circle(
             [
@@ -172,7 +176,11 @@ function showLocation(
                 longitude
             ],
             {
-                radius: accuracy
+                radius: displayRadius,
+                color: "#14b8a6",
+                fillColor: "#14b8a6",
+                fillOpacity: 0.08,
+                weight: 1.5
             }
         )
         .addTo(map);
@@ -183,7 +191,7 @@ function showLocation(
             latitude,
             longitude
         ],
-        11
+        13
     );
 
 
@@ -192,6 +200,8 @@ function showLocation(
     ).innerText =
         `Lat ${latitude.toFixed(4)}
          | Lon ${longitude.toFixed(4)}`;
+
+    fetchPlaceName(latitude, longitude);
 }
 
 
@@ -264,6 +274,20 @@ async function runAnalysis(
     }
 }
 
+//new line add-------------------------------01.09.26
+function animateNumber(id, target) {
+    const el = document.getElementById(id);
+    let current = 0;
+    const step = Math.max(1, Math.round(target / 30));
+    const interval = setInterval(function() {
+        current += step;
+        if (current >= target) {
+            current = target;
+            clearInterval(interval);
+        }
+        el.innerText = current;
+    }, 20);
+}
 
 // ------------------------------------
 // Update dashboard
@@ -300,10 +324,10 @@ function updateDashboard(data) {
 
     // Risk
 
-    document.getElementById(
-        "riskScore"
-    ).innerText =
-        risk.risk_score;
+    animateNumber(
+        "riskScore",
+        risk.risk_score
+    );
 
 
     document.getElementById(
@@ -781,12 +805,32 @@ closeStateMenu.addEventListener("click", function() {
     stateMenu.classList.remove("open");
 });
 
+const stateCoords = {
+    "Sikkim": { lat: 27.57, lon: 88.48 },
+    "Gangtok": { lat: 27.34, lon: 88.61 },
+    "Arunachal Pradesh": { lat: 28.04, lon: 94.68 },
+    "Assam": { lat: 26.2006, lon: 92.9376 },
+    "Tripura": { lat: 23.9408, lon: 91.9882 },
+    "Meghalaya": { lat: 25.4670, lon: 91.3662 },
+    "Manipur": { lat: 24.6637, lon: 93.9063 },
+    "Nagaland": { lat: 26.1584, lon: 94.5624 },
+    "Mizoram": { lat: 23.1645, lon: 92.9376 }
+};
+
 document.querySelectorAll(".state-item").forEach(function(item) {
     item.addEventListener("click", function() {
         const stateName = item.dataset.state;
+        const coords = stateCoords[stateName];
+
+        if (!coords) return;
+
+        currentLocation = { latitude: coords.lat, longitude: coords.lon };
+
         document.getElementById("locationText").innerText = stateName;
         stateMenu.classList.remove("open");
-        // Yahan chaho to us state ka lat/long set karke runAnalysis() call kar sakte ho
+
+        showLocation(coords.lat, coords.lon, 5000);
+        runAnalysis(coords.lat, coords.lon);
     });
 });
 
@@ -798,4 +842,34 @@ if (historyBtn) {
     });
 } else {
     console.log("historyChatBtn NOT FOUND when script ran!");
+}
+
+async function fetchPlaceName(latitude, longitude) {
+
+    try {
+        const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10`
+        );
+
+        const data = await res.json();
+
+        const address = data.address || {};
+
+        const placeName =
+            address.village ||
+            address.town ||
+            address.city ||
+            address.county ||
+            address.state_district ||
+            address.state ||
+            "Nearby area name not found";
+
+        document.getElementById(
+            "locationText"
+        ).innerText =
+            `${placeName} — Lat ${latitude.toFixed(4)} | Lon ${longitude.toFixed(4)}`;
+
+    } catch (e) {
+        console.log("Reverse geocoding failed:", e);
+    }
 }

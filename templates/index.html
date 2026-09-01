@@ -1,14 +1,10 @@
+<!-- Define first page -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
 
     <title>
         Biswajit Maity
@@ -23,14 +19,14 @@
     <!-- Custom CSS -->
     <link
         rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}"
+        href="{{ url_for('static', filename='css/style.css') }}?v=2"
     >
 
 </head>
 
 
 <button id="historyChatBtn" class="history-chat-btn">
-    <span class="btn-icon">🕐</span>
+    <span class="btn-icon">🧑‍💻</span>
     <span class="btn-tooltip">Disaster History</span>
 </button>
 
@@ -108,52 +104,53 @@
 
 <main>
 
-<section class="hero">
+    <section class="hero">
 
-    <!--<div id="infoPopup" class="info-popup">
-    <div class="info-popup-content">
+        <!--<div id="infoPopup" class="info-popup">
+        <div class="info-popup-content">
         <p id="infoPopupText"></p>
         <button onclick="closeInfoPopup()">OK</button>
-    </div>-->
+        </div>>-->
 
 
-    <!-- <svg class="hills" viewBox="0 0 1440 320" preserveAspectRatio="none">
-        <path class="hill hill1" d="M0,192 C320,300 420,80 720,160 C1020,240 1120,80 1440,180 L1440,320 L0,320 Z"></path>
-        <path class="hill hill2" d="M0,224 C300,120 500,260 720,200 C940,140 1140,260 1440,220 L1440,320 L0,320 Z"></path>
-    </svg>-->
+        <!-- <svg class="hills" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path class="hill hill1" d="M0,192 C320,300 420,80 720,160 C1020,240 1120,80 1440,180 L1440,320 L0,320 Z"></path>
+            <path class="hill hill2" d="M0,224 C300,120 500,260 720,200 C940,140 1140,260 1440,220 L1440,320 L0,320 Z"></path>
+        </svg>-->
 
-    <div>
+        <div>
 
-        <p class="badge">
-            AI-POWERED EARLY WARNING
-        </p>
+            <p class="badge">
+                AI-POWERED EARLY WARNING
+            </p>
 
-        <h1>
-            Landslide Risk Monitoring
-            for Northeast India
-        </h1>
+            <h1>
+                Landslide Risk Monitoring
+                for Northeast India
+            </h1>
 
-        <p class="hero-text">
+            <p class="hero-text">
 
-            Combine rainfall, terrain,
-            historical landslides and
-            susceptibility data into an
-            explainable risk assessment.
+                Combine rainfall, terrain,
+                historical landslides and
+                susceptibility data into an
+                explainable risk assessment.
 
-        </p>
+            </p>
 
-        <button
-            id="startBtn"
-            class="primary-btn"
-        >
-            Start Live Analysis
-        </button>
+            <button
+                id="startBtn"
+                class="primary-btn"
+            >
+                Start Live Analysis
+            </button>
 
-    </div>
+        </div>
 
-</section>
+    </section>
+</main>
 
-
+<div class="dashboard"></div>
     <!-- Workflow -->
 
     <div class="workflow">
@@ -279,7 +276,7 @@
         <div class="panel risk-panel">
 
             <h2>
-                Risk Analysis
+                📊 Risk Analysis
             </h2>
 
 
@@ -518,8 +515,7 @@
 
     </div>
 
-</section>
-
+</div>
 </main>
 
 <section class="emergency-section">
@@ -529,39 +525,39 @@
 
   <div class="emergency-content" id="emergencyContent" style="display:none;">
 
-    <div class="emergency-category">
-      <h3>Main Emergency Numbers</h3>
-      <ul>
-        <li><a href="tel:112"><strong>112</strong> — Emergency Response Support System (One Number for All)</a></li>
-        <li><a href="tel:1078"><strong>1078</strong> — National Disaster Control Room (NDMA)</a></li>
-        <li><a href="tel:1070"><strong>1070</strong> — Assam State emergency operations centre</a></li>
-        <li><a href="tel:1079"><strong>1079</strong> — AssamState emergency operations centre</a></li>
-        <li><a href="tel:1077"><strong>1077</strong> — District Disaster Control Room</a></li>
-        <li><a href="tel:9711077372"><strong>9711077372</strong>—NDRF helpline number</a></li>
-      </ul>
-    </div>
+        <div class="emergency-category">
+            <h3>Main Emergency Numbers</h3>
+            <ul>
+                <li><a href="tel:112"><strong>112</strong> — Emergency Response Support System (One Number for All)</a></li>
+                <li><a href="tel:1078"><strong>1078</strong> — National Disaster Control Room (NDMA)</a></li>
+                <li><a href="tel:1070"><strong>1070</strong> — Assam State emergency operations centre</a></li>
+                <li><a href="tel:1079"><strong>1079</strong> — AssamState emergency operations centre</a></li>
+                <li><a href="tel:1077"><strong>1077</strong> — District Disaster Control Room</a></li>
+                <li><a href="tel:9711077372"><strong>9711077372</strong>—NDRF helpline number</a></li>
+            </ul>
+        </div>
 
-    <div class="emergency-category">
-      <h3>🚑 Medical and Rescue Team</h3>
-      <ul>
-        <li><a href="tel:102"><strong>102</strong> — Government Ambulance Service</a></li>
-        <li><a href="tel:108"><strong>108</strong> — Emergency Medical Disaster Response</a></li>
-      </ul>
-    </div>
+        <div class="emergency-category">
+            <h3>🚑 Medical and Rescue Team</h3>
+            <ul>
+                <li><a href="tel:102"><strong>102</strong> — Government Ambulance Service</a></li>
+                <li><a href="tel:108"><strong>108</strong> — Emergency Medical Disaster Response</a></li>
+            </ul>
+        </div>
 
-    <div class="emergency-category">
-      <h3>⛰️ For Hilly and Specific Areas</h3>
-      <ul>
-        <li><a href="tel:139"><strong>139</strong> — Railway Safety and Disaster Relief (near railway track incidents)</a></li>
-        <li><a href="tel:0361-2237219"><strong>0361-2237219</strong> — Assam ASDMA control room</a></li>
-        <li><a href="tel:0361-2237460"><strong>0361-2237460</strong> — Assam ASDMA control room</a></li>
-        <li><a href="tel:8787336331"><strong>8787336331</strong> — Arunnachal pradesh state helpline number</a></li>
-        <li><a href="tel:0361-2840284"><strong>0361-2840284</strong> — NDRF guwahati control room</a></li>
-        <li><strong>Local Police Station</strong> — For immediate help at the local level</li>
-      </ul>
-    </div>
+        <div class="emergency-category">
+            <h3>⛰️ For Hilly and Specific Areas</h3>
+            <ul>
+                <li><a href="tel:139"><strong>139</strong> — Railway Safety and Disaster Relief (near railway track incidents)</a></li>
+                <li><a href="tel:0361-2237219"><strong>0361-2237219</strong> — Assam ASDMA control room</a></li>
+                <li><a href="tel:0361-2237460"><strong>0361-2237460</strong> — Assam ASDMA control room</a></li>
+                <li><a href="tel:8787336331"><strong>8787336331</strong> — Arunnachal pradesh state helpline number</a></li>
+                <li><a href="tel:0361-2840284"><strong>0361-2840284</strong> — NDRF guwahati control room</a></li>
+                <li><strong>Local Police Station</strong> — For immediate help at the local level</li>
+            </ul>
+        </div>
 
-  </div>
+    </div>
 </section>
 
 <footer>
@@ -587,10 +583,10 @@
 ></script>
 
 <script>
-function toggleEmergency() {
-  const content = document.getElementById("emergencyContent");
-  content.style.display = (content.style.display === "none") ? "block" : "none";
-}
+    function toggleEmergency() {
+    const content = document.getElementById("emergencyContent");
+    content.style.display = (content.style.display === "none") ? "block" : "none";
+    }
 </script>
 
 </body>
